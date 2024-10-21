@@ -9,3 +9,5 @@ Built using:
 * Boostrap
 
 * Postgres
+
+[<img src="https://github.com/fengtingzhang/therapy/blob/bootstrap-template/app/assets/images/V1-bootstrapped.gif">](v1)
