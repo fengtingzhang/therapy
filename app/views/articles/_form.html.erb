@@ -1,26 +1,32 @@
 <%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  <div class="row m-5">
+    <div class="col-6">       
+      <%= form.label :title, :class=>"form-label" %>
+      <%= form.text_field :title, :class=>"form-control" %>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
-    <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+      <% article.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
 
-  <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
-  </div>
+      <%= form.label :body, :class=>"form-label" %>
+      <%= form.text_area :body, :class=>"form-control pb-5 mb-2" %>
 
-  <div>
-    <%= form.submit %>
+      <% article.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+
+      <%= form.label :status, :class=>"form-label mt-2" %>
+      <%= form.select :status, 
+        Visible::VALID_STATUSES, 
+        selected: article.status || 'public',
+        :class => "form-select mb-5" %>
+    </div>
+  </div>
+  <div class="row m-5">
+    <div class="col-6">       
+      <%= form.submit "Submit", :class => "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
+
+

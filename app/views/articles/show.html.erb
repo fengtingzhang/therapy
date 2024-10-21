@@ -1,17 +1,29 @@
-<h1><%= @article.title %></h1>
+<%= render "common/navbar" %>
+<div class="container">
+  <div class="row pt-5">
 
-<p><%= @article.body %></p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <p><%= render "common/reader" %></p>
+    <h5 class="card-title"><%= @article.title %></h5>
+    <p class="card-text"><%= @article.body %></p>
+    <%= link_to "Edit", edit_article_path(@article), :class=>"btn btn-primary" %>
+    <%= link_to "Delete Article", article_path(@article), 
+                      :class=>"btn btn-danger", 
+                      data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %>
+  </div>
+</div>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render "comments/form", article: @article %>
+  <div class="container bg-light m-5 p-5">
+    <h2>Comments</h2>
+    <ul class="list-group"><%= render @article.comments %></ul>
+  </div>
+  <div class="container">
+    <h2>Add a comment:</h2>
+    <%= render "comments/form", article: @article %>
+  </div>
+</div>
