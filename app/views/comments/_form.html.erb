@@ -1,17 +1,24 @@
 <%= form_with model: [ article, article.comments.build ] do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="row mt-5">
+    <div class="col-8"> 
+      <%= form.label :commenter, "Name", :class=>"form-label" %>
+      <%= form.text_field :commenter, :class=>"form-control" %>
+
+      <%= form.label :body, "Comment", :class=>"form-label" %>
+      <%= form.text_area :body, :class=>"form-control pb-5 mb-2" %>
+
+      <%= form.label :status %>
+      <%= form.select :status, 
+        Visible::VALID_STATUSES, 
+        selected: 'public', 
+        :class => "form-select mb-5" 
+      %>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-8"> 
+    <%= form.submit "Add Comment", :class => "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

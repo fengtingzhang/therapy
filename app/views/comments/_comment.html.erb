@@ -1,18 +1,24 @@
 <% unless comment.archived? %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
+  <li class="list-group-item">  
+    <p>
+      <%= render "common/commenter"%>
+      <strong>By:</strong>
+      <%= comment.commenter %>
+      <span class="badge text-bg-secondary"><%= comment.updated_at %></span>
+    </p>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
+    <p>
+      <%= comment.body %>
+    </p>
 
-  <p>
-    <%= link_to "Destroy Comment", [comment.article, comment], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                } %>
-  </p>
+    <p>
+      <%= link_to "Delete Comment", [comment.article, comment], 
+        :class => "btn btn-danger",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } 
+      %>
+    </p>
+  </li>
 <% end %>
